@@ -1,11 +1,8 @@
 Authorization
 =============
 
-To authorize with OK.ru OAuth 2.0 you need :code:`app_id` or :code:`app_key`.
-And you need either :code:`session_secret_key` or :code:`app_secret_key`
-and :code:`access_token` for executing API requests after authorization.
-
-After authorization you will receive:
+The preferred way to authorize is an :code:`async with` statement.
+After authorization the session will have the following attributes:
 
 * :code:`access_token` aka :code:`session_key`, always
 * :code:`session_secret_key` if Implicit Grant / Password Grant used
@@ -24,7 +21,7 @@ Authorization Code Grant
 
     app_id = 123456
     app_key = 'abcde'
-    app_secret_key = ''
+    app_secret_key = 'xyz'
 
     async with CodeSession(app_id, app_key, app_secret_key, code, redirect_uri) as session:
         api = API(session)
@@ -43,7 +40,7 @@ Implicit Grant
 
     app_id = 123456
     app_key = 'abcde'
-    app_secret_key = 'xyz'
+    app_secret_key = ''
 
     async with ImplicitSession(app_id, app_key, app_secret_key, login, passwd, scope) as session:
         api = API(session)
@@ -62,7 +59,7 @@ Password Grant
 
     app_id = 123456
     app_key = 'abcde'
-    app_secret_key = 'xyz'
+    app_secret_key = ''
 
     async with PasswordSession(app_id, app_key, app_secret_key, login, passwd) as session:
         api = API(session)
@@ -79,7 +76,7 @@ Refresh Token
 
     app_id = 123456
     app_key = 'abcde'
-    app_secret_key = ''
+    app_secret_key = 'xyz'
 
     async with RefreshSession(app_id, app_key, app_secret_key, refresh_token) as session:
         api = API(session)

@@ -6,6 +6,10 @@ List of all methods is available here: https://apiok.ru/en/dev/methods/rest/.
 Executing requests
 ------------------
 
+For executing API requests call an instance of :code:`APIMethod` class.
+You can get it as an attribute of :code:`API` class instance or
+as an attribute of other :code:`APIMethod` class instance.
+
 .. code-block:: python
 
     from aiookru import API
@@ -15,16 +19,16 @@ Executing requests
     events = await api.events.get()  # events for current user
     friends = await api.friends.get()  # current user's friends
 
-Under the hood each API request is enriched
-with parameters (https://apiok.ru/en/dev/methods/):
+Under the hood each API request is enriched with parameters to generate signature:
 
 * :code:`application_key`
-* :code:`app_secret_key` and :code:`access_token` or :code:`session_secret_key`
 * :code:`format`
 * :code:`method`
-* :code:`sig`
 
-to authorize request.
+and with the following parameters after generating signature:
+
+* :code:`sig`
+* :code:`access_token`
 
 Methods
 -------

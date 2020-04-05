@@ -125,7 +125,7 @@ class TokenSession(PublicSession):
     def sig_circuit(self):
         if self.app_secret_key and self.access_token and self.app_key:
             return SignatureCircuit.SERVER_SERVER
-        elif self.session_secret_key and self.app_key:
+        elif self.session_secret_key and self.access_token and self.app_key:
             return SignatureCircuit.CLIENT_SERVER
         else:
             return SignatureCircuit.UNDEFINED
@@ -164,7 +164,10 @@ class TokenSession(PublicSession):
 
         params = {k: params[k] for k in params if params[k]}
         params.update(self.required_params)
-        params.update({'sig': self.sign_params(params)})
+        params.update({
+            'sig': self.sign_params(params),
+            'access_token': self.access_token,
+        })
 
         async with self.session.get(url, params=params) as resp:
             content = await resp.json(content_type=self.CONTENT_TYPE)
@@ -186,15 +189,18 @@ class TokenSession(PublicSession):
 class ClientSession(TokenSession):
     """Session for executing requests in client applications.
 
-    `TokenSession` without `app_secret_key` and `access_token` arguments.
+    `TokenSession` without `app_secret_key` argument.
 
     """
 
-    ERROR_MSG = 'Pass "session_secret_key" to use client-server circuit.'
+    ERROR_MSG = (
+        'Pass "session_secret_key" and "access_token"'
+        'to use client-server circuit.'
+    )
 
-    def __init__(self, app_id, app_key, session_secret_key,
+    def __init__(self, app_id, app_key, access_token, session_secret_key,
                  format='json', pass_error=False, session=None, **kwargs):
-        super().__init__(app_id, app_key, '', '', session_secret_key,
+        super().__init__(app_id, app_key, '', access_token, session_secret_key,
                          format, pass_error, session, **kwargs)
 
 
@@ -275,15 +281,6 @@ class CodeSession(TokenSession):
             raise OAuthError('got empty authorization response')
 
         return self
-
-
-class CodeClientSession(CodeSession):
-    """`CodeSession` without `app_secret_key` argument."""
-
-    def __init__(self, app_id, app_key, code, redirect_uri,
-                 format='json', pass_error=False, session=None, **kwargs):
-        super().__init__(app_id, app_key, '', code, redirect_uri,
-                         format, pass_error, session, **kwargs)
 
 
 class CodeServerSession(CodeSession):
@@ -464,10 +461,6 @@ class ImplicitClientSession(ImplicitSession):
                          format, pass_error, session, **kwargs)
 
 
-class ImplicitServerSession(ImplicitSession):
-    """The same as `ImplicitSession`."""
-
-
 class PasswordSession(TokenSession):
     """Session with authorization with OAuth 2.0 (Password Grant).
 
@@ -528,10 +521,6 @@ class PasswordClientSession(PasswordSession):
                          format, pass_error, session, **kwargs)
 
 
-class PasswordServerSession(PasswordSession):
-    """The same as `PasswordSession`."""
-
-
 class RefreshSession(TokenSession):
     """Session with authorization with OAuth 2.0 (Refresh Token).
 
@@ -586,15 +575,6 @@ class RefreshSession(TokenSession):
             raise OAuthError('got empty authorization response')
 
         return self
-
-
-class RefreshClientSession(RefreshSession):
-    """`RefreshSession` without `app_secret_key` argument."""
-
-    def __init__(self, app_id, app_key, refresh_token,
-                 format='json', pass_error=False, session=None, **kwargs):
-        super().__init__(app_id, app_key, '', refresh_token,
-                         format, pass_error, session, **kwargs)
 
 
 class RefreshServerSession(RefreshSession):

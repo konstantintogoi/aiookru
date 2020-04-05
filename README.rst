@@ -7,7 +7,7 @@
 .. image:: https://img.shields.io/pypi/pyversions/aiookru.svg
     :target: https://pypi.python.org/pypi/aiookru
 
-.. image:: https://img.shields.io/badge/docs-latest-brightgreen.svg
+.. image:: https://readthedocs.org/projects/aiookru/badge/?version=latest
     :target: https://aiookru.readthedocs.io/en/latest/
 
 .. image:: https://travis-ci.org/KonstantinTogoi/aiookru.svg
@@ -18,7 +18,7 @@
 aiookru
 =======
 
-aiookru is a `ok.ru <https://ok.ru>`_ python API wrapper.
+aiookru is a python `ok.ru API <https://apiok.ru/>`_ wrapper.
 The main features are:
 
 * authorization (`Authorization Code <https://oauth.net/2/grant-types/authorization-code/>`_, `Implicit Flow <https://oauth.net/2/grant-types/implicit/>`_, `Password Grant <https://oauth.net/2/grant-types/password/>`_, `Refresh Token <https://oauth.net/2/grant-types/refresh-token/>`_)
@@ -28,7 +28,8 @@ The main features are:
 Usage
 -----
 
-To use ok.ru API you need a registered app and `OK.ru <https://ok.ru>`_ account.
+To use `ok.ru API <https://apiok.ru/>`_ you need a registered app
+and `ok.ru <https://ok.ru>`_ account.
 For more details, see
 `aiookru Documentation <https://aiookru.readthedocs.io/>`_.
 
@@ -37,8 +38,8 @@ Client application
 
 Use :code:`ClientSession` when REST API is needed in:
 
-- a client component of the client-server application
-- a standalone mobile/desktop application
+- client component of the client-server application
+- standalone mobile/desktop application
 
 i.e. when you embed your app's info (application key) in publicly available code.
 
@@ -46,21 +47,23 @@ i.e. when you embed your app's info (application key) in publicly available code
 
     from aiookru import ClientSession, API
 
-    session = ClientSession(app_id, app_key, session_secret_key)
+    session = ClientSession(app_id, app_key, access_token, session_secret_key)
     api = API(session)
 
     events = await api.events.get()
     friends = await api.friends.get()
 
-Pass :code:`session_secret_key` that was received after authorization.
-For more details, see `aiookru Documentation <https://aiookru.readthedocs.io/>`_.
+Pass :code:`session_secret_key` and :code:`access_token`
+that were received after authorization.
+For more details, see
+`authorization instruction <https://aiookru.readthedocs.io/en/latest/authorization.html>`_.
 
 Server application
 ~~~~~~~~~~~~~~~~~~
 
 Use :code:`ServerSession` when REST API is needed in:
 
-- a server component of the client-server application
+- server component of the client-server application
 - requests from your servers
 
 .. code-block:: python
@@ -73,9 +76,9 @@ Use :code:`ServerSession` when REST API is needed in:
     events = await api.events.get()
     friends = await api.friends.get()
 
-Pass :code:`access_token` that was received after authorization.
+Pass :code:`app_secret_key` and :code:`access_token` that was received after authorization.
 For more details, see
-`aiookru Documentation <https://aiookru.readthedocs.io/>`_.
+`authorization instruction <https://aiookru.readthedocs.io/en/latest/authorization.html>`_.
 
 Installation
 ------------
