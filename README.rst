@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/license-BSD-blue.svg
-    :target: https://github.com/KonstantinTogoi/aiookru/blob/master/LICENSE
+    :target: https://github.com/konstantintogoi/aiookru/blob/master/LICENSE
 
 .. image:: https://img.shields.io/pypi/v/aiookru.svg
     :target: https://pypi.python.org/pypi/aiookru
@@ -8,112 +8,59 @@
     :target: https://pypi.python.org/pypi/aiookru
 
 .. image:: https://readthedocs.org/projects/aiookru/badge/?version=latest
-    :target: https://aiookru.readthedocs.io/en/latest/
+    :target: https://aiookru.readthedocs.io/en/latest
 
-.. image:: https://travis-ci.org/KonstantinTogoi/aiookru.svg
-    :target: https://travis-ci.org/KonstantinTogoi/aiookru
+.. image:: https://github.com/konstantintogoi/aiookru/actions/workflows/pages/pages-build-deployment/badge.svg
+    :target: https://konstantintogoi.github.io/aiookru
 
 .. index-start-marker1
 
 aiookru
 =======
 
-aiookru is a python `ok.ru API <https://apiok.ru/>`_ wrapper.
-The main features are:
-
-* authorization (`Authorization Code <https://oauth.net/2/grant-types/authorization-code/>`_, `Implicit Flow <https://oauth.net/2/grant-types/implicit/>`_, `Password Grant <https://oauth.net/2/grant-types/password/>`_, `Refresh Token <https://oauth.net/2/grant-types/refresh-token/>`_)
-* `REST API <https://apiok.ru/en/dev/methods/rest>`_ methods
-
+async python `ok.ru API <https://apiok.ru/>`_ wrapper
+for `REST API <https://apiok.ru/en/dev/methods/rest>`_ methods.
 
 Usage
 -----
 
-To use `ok.ru API <https://apiok.ru/>`_ you need a registered app
-and `ok.ru <https://ok.ru>`_ account.
-For more details, see
-`aiookru Documentation <https://aiookru.readthedocs.io/>`_.
-
-Client application
-~~~~~~~~~~~~~~~~~~
-
-Use :code:`ClientSession` when REST API is needed in:
-
-- client component of the client-server application
-- standalone mobile/desktop application
-
-i.e. when you embed your app's info (application key) in publicly available code.
+To use `ok.ru API <https://apiok.ru/>`_ you need a registered app and an :code:`access_token`.
 
 .. code-block:: python
 
-    from aiookru import ClientSession, API
+    import aiookru
 
-    session = ClientSession(app_id, app_key, access_token, session_secret_key)
-    api = API(session)
+    client_id = '12345678'
+    application_key = 'ABCDEFGHIJKLMNOPQ'
+    application_secret_key = '0A1B2C3D4E5F6G7H8I9K10L11M12N13O14P15Q'
+    redirect_uri = 'http://apiok.ru/oauth_callback'
 
-    events = await api.events.get()
-    friends = await api.friends.get()
+    code = ''  # get code from login form
 
-Pass :code:`session_secret_key` and :code:`access_token`
-that were received after authorization.
-For more details, see
-`authorization instruction <https://aiookru.readthedocs.io/en/latest/authorization.html>`_.
+    async with aiookru.CodeGrant(client_id, application_secret_key, redirect_uri, code) as grant:
+        access_token = grant.access_token
+        refresh_token = grant.refresh_token
 
-Server application
-~~~~~~~~~~~~~~~~~~
+    async with aiookru.API(access_token, application_key, application_secret_key=application_secret_key) as okru:
+        events = await okru.events.get()
 
-Use :code:`ServerSession` when REST API is needed in:
+    async with aiookru.RefreshGrant(client_id, application_secret_key, refresh_token) as grant:
+        access_token = grant.access_token
 
-- server component of the client-server application
-- requests from your servers
-
-.. code-block:: python
-
-    from aiookru import ServerSession, API
-
-    session = ServerSession(app_id, app_key, app_secret_key, access_token)
-    api = API(session)
-
-    events = await api.events.get()
-    friends = await api.friends.get()
-
-Pass :code:`app_secret_key` and :code:`access_token` that was received after authorization.
-For more details, see
-`authorization instruction <https://aiookru.readthedocs.io/en/latest/authorization.html>`_.
+For more details, see `authorization instruction <https://konstantintogoi.github.io/aiookru/authorization>`_.
 
 Installation
 ------------
 
 .. code-block:: shell
 
-    pip install aiookru
+    $ pip install aiookru
 
-or
-
-.. code-block::
-
-    python setup.py install
 
 Supported Python Versions
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Python 3.5, 3.6, 3.7 and 3.8 are supported.
-
-.. index-end-marker1
-
-Test
-----
-
-Run all tests.
-
-.. code-block:: shell
-
-    python setup.py test
-
-Run tests with PyTest.
-
-.. code-block:: shell
-
-    python -m pytest [-k TEST_NAME]
+Python 3.7, 3.8, 3.9 are supported.
 
 License
 -------

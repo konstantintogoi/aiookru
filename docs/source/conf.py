@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'aiookru'
-copyright = '2020, Konstantin Togoi'
+copyright = '2024, Konstantin Togoi'
 author = 'Konstantin Togoi'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1.post1'
+release = '1.0.0rc1'
 
 
 # -- General configuration ---------------------------------------------------

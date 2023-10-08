@@ -1,0 +1,42 @@
+[tool.ruff]
+ignore = []
+fixable = ["I", "W"]
+select = [
+    "A",  # flake8-builtins
+    "B",  # flake8-bugbear
+    "D",  # pydocstyle
+    "E",  # pycodestyle errors
+    "F",  # Pyflakes
+    "I",  # isort
+    "N",  # pep8-naming
+    "W",  # pycodestyle warnings
+    "C4",  # flake8-comprehensions
+    "C90",  # mccabe
+    "COM",  # flake8-commas
+]
+extend-select = [
+    "D",  # pydocstyle
+]
+extend-ignore = [
+    # Google docstring conventions
+    "D203",  # No blank lines before class docstring
+    "D213",  # Multi-line docstrings should start at the first line
+    "D406",  # Allow colons after "Args", "Returns"
+    "D407",  # Allow "Args", "Returns"
+]
+
+exclude = [
+    "__pypackages__",
+    "__pycache__",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".git",
+]
+
+line-length = 80
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.9.
+target-version = "py39"

@@ -1,66 +1,40 @@
+"""Conftest."""
 import json
-from os.path import dirname, join
+from asyncio import AbstractEventLoop, get_event_loop_policy
+from typing import Generator
 
 import pytest
 
-from aiookru.sessions import PublicSession
 
-
-data_path = join(dirname(__file__), 'data')
-
-
-@pytest.fixture
-def error():
-    return {'error_code': -1, 'error_msg': 'test error msg'}
-
-
-@pytest.fixture
-def dummy():
-    return {}
+@pytest.fixture(scope='session')
+def event_loop() -> Generator[AbstractEventLoop, None, None]:
+    """Event loop."""
+    loop = get_event_loop_policy().new_event_loop()
+    yield loop
+    loop.close()
 
 
 @pytest.fixture
-def data():
-    return {'key': 'value'}
-
-
-@pytest.yield_fixture
-async def error_server(httpserver, error):
+async def error_server(httpserver):
+    """Return error server."""
     httpserver.serve_content(**{
         'code': 401,
-        'headers': {'Content-Type': PublicSession.CONTENT_TYPE},
-        'content': json.dumps(error),
-    })
-    return httpserver
-
-
-@pytest.yield_fixture
-async def dummy_server(httpserver, dummy):
-    httpserver.serve_content(**{
-        'code': 401,
-        'headers': {'Content-Type': PublicSession.CONTENT_TYPE},
-        'content': json.dumps(dummy),
-    })
-    return httpserver
-
-
-@pytest.yield_fixture
-async def data_server(httpserver, data):
-    httpserver.serve_content(**{
-        'code': 401,
-        'headers': {'Content-Type': PublicSession.CONTENT_TYPE},
-        'content': json.dumps(data),
+        'headers': {'Content-Type': 'application/json;charset=utf-8'},
+        'content': json.dumps({
+            'error_code': -1,
+            'error_msg': 'error msg',
+            'error_data': 'error data',
+        }),
     })
     return httpserver
 
 
 @pytest.fixture
-def auth_dialog():
-    with open(join(data_path, 'dialogs', 'auth_dialog.html')) as f:
-        return f.read()
-
-
-@pytest.fixture
-def access_dialog():
-    with open(join(data_path, 'dialogs', 'access_dialog.html')) as f:
-        return f.read()
+async def data_server(httpserver):
+    """Return data server."""
+    httpserver.serve_content(**{
+        'code': 200,
+        'headers': {'Content-Type': 'application/json;charset=utf-8'},
+        'content': json.dumps({'key': 'value'}),
+    })
+    return httpserver

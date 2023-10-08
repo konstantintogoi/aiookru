@@ -8,8 +8,8 @@
 
    getting_started
    authorization
-   session
-   rest_api
+   requests
+   api
 
 Indices and tables
 ==================
