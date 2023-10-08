@@ -8,10 +8,10 @@ Request
 -------
 
 By default, the session
-(:code:`CodeSession`, :code:`ImplicitSession`, :code:`PasswordSession`, :code:`RefreshSession`)
+(:code:`CodeSession`, :code:`PasswordSession`, :code:`RefreshSession`)
 tries to infer which signature generation circuit to use:
 
-- if :code:`app_secret_key` is not empty string - server-server signature generation circuit is used
+- if :code:`application_secret_key` is not empty string - server-server signature generation circuit is used
 - else if :code:`session_secret_key` is not empty string - client-server signature generation circuit is used
 - else exception is raised
 
@@ -28,9 +28,9 @@ Let's consider the following example of API request with client-server signature
     from aiookru import TokenSession, API
 
     session = TokenSession(
-        app_id=123456,
-        app_key='ABCDEFGHIGKLMNOPK',
-        app_secret_key='',
+        client_id=123456,
+        application_key='ABCDEFGHIGKLMNOPK',
+        application_secret_key='',
         access_token='-s-2GUXOAvQYI7-RfxsZtV1wezsdtVPv92xfuaSQ8.SAIV1O2ywYra2-3ywes5St2yvcuZSr9UUWN2TtbWtWKVTuAy8',
         session_secret_key='ae5362b5b588cc7294c2414d71b74d5d',
     )
@@ -60,47 +60,15 @@ The following steps were taken:
 ClientSession
 ^^^^^^^^^^^^^
 
-:code:`ClientSession` is a subclass of :code:`TokenSession`.
-Use it as a client session without authorization.
-Use :code:`session_secret_key` and :code:`access_token` that were already received.
+For making requests with :code:`session_secret_key` and :code:`access_token`.
 
 .. code-block:: python
 
     from aiookru import ClientSession, API
 
-    session = ClientSession(app_id, app_key, access_token, session_secret_key)
+    session = ClientSession(client_id, application_key, access_token, session_secret_key)
     api = API(session)
     ...
-
-ImplicitClientSession
-^^^^^^^^^^^^^^^^^^^^^
-
-:code:`ImplicitClientSession` is a subclass of :code:`ImplicitSession`.
-Use it as a client session with authorization
-(`Implicit Flow <https://oauth.net/2/grant-types/implicit/>`_).
-
-.. code-block:: python
-
-    from aiookru import ImplicitClientSession, API
-
-    async with ImplicitClientSession(app_id, app_key, login, passwd, scope) as session:
-        api = API(session)
-        ...
-
-PasswordClientSession
-^^^^^^^^^^^^^^^^^^^^^
-
-:code:`PasswordClientSession` is a subclass of :code:`PasswordSession`.
-Use it as a client session with authorization
-(`Password Grant <https://oauth.net/2/grant-types/password/>`_).
-
-.. code-block:: python
-
-    from aiookru import PasswordClientSession, API
-
-    async with PasswordClientSession(app_id, app_key, login, passwd) as session:
-        api = API(session)
-        ...
 
 Server-Server signature generation circuit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,9 +80,9 @@ Let's consider the following example of API request with server-server signature
     from aiookru import TokenSession, API
 
     session = TokenSession(
-        app_id=123456,
-        app_key='ABCDEFGHIGKLMNOPK',
-        app_secret_key='ABC123DEF456GHI789JKL123',
+        client_id=123456,
+        application_key='ABCDEFGHIGKLMNOPK',
+        application_secret_key='ABC123DEF456GHI789JKL123',
         access_token='-s-84W-s3egarWUsbkq-IWTucuedzTKT8VUXIA.s4Xx8IW7',
         session_secret_key='',
     )
@@ -135,7 +103,7 @@ It is equivalent to **GET** request:
 
 The following steps were taken:
 
-1. :code:`b1a2b89707a94624c43afae67d59274c` used as secret key, it was calculated as MD5(:code:`access_token` + :code:`app_secret_key`)
+1. :code:`b1a2b89707a94624c43afae67d59274c` used as secret key, it was calculated as MD5(:code:`access_token` + :code:`application_secret_key`)
 2. sorted request parameters and secret key were concatenated: :code:`application_key=ABCDEFGHIGKLMNOPKformat=jsonmethod=events.getb1a2b89707a94624c43afae67d59274c`
 3. signature :code:`232c8eb921951c4dba9b72606f9ddb4c` calculated as MD5 of the previous string
 4. signature appended to **GET** request parameters
@@ -144,70 +112,54 @@ The following steps were taken:
 ServerSession
 ^^^^^^^^^^^^^
 
-:code:`ServerSession` is a subclass of :code:`TokenSession`.
-Use it as a server session without authorization.
-Use your :code:`app_secret_key` and :code:`access_token` that was already received.
+For making requests with :code:`application_secret_key` and :code:`access_token`.
 
 .. code-block:: python
 
     from aiookru import ServerSession, API
 
-    session = ServerSession(app_id, app_key, app_secret_key, access_token)
+    session = ServerSession(client_id, application_key, application_secret_key, access_token)
     api = API(session)
     ...
 
-CodeServerSession
+CodeSession
 ^^^^^^^^^^^^^^^^^
 
-:code:`CodeServerSession` is a subclass of :code:`CodeSession`.
-Use it as a server session with authorization
-(`Authorization Code <https://oauth.net/2/grant-types/authorization-code/>`_).
+Server session with authorization with
+`Authorization Code <https://oauth.net/2/grant-types/authorization-code/>`_.
 
 .. code-block:: python
 
-    from aiookru import CodeServerSession, API
+    from aiookru import CodeSession, API
 
-    async with CodeServerSession(app_id, app_key, app_secret_key, code, redirect_uri) as session:
+    async with CodeSession(client_id, application_key, application_secret_key, code, redirect_uri) as session:
         api = API(session)
         ...
 
-RefreshServerSession
+PasswordSession
 ^^^^^^^^^^^^^^^^^^^^
 
-:code:`RefreshServerSession` is a subclass of :code:`RefreshSession`.
-Use it as a server session with authorization
-(`Refresh Token <https://oauth.net/2/grant-types/refresh-token/>`_).
+Server session with authorization with
+`logn and password <https://oauth.net/2/grant-types/password/>`_`.
 
 .. code-block:: python
 
-    from aiookru import RefreshServerSession, API
+    from aiookru import PasswordSession, API
 
-    async with RefreshServerSession(app_id, app_key, app_secret_key, refresh_token) as session:
+    async with PasswordSession(client_id, application_key, application_secret_key, refresh_token) as session:
         api = API(session)
         ...
 
-Response
---------
+RefreshSession
+^^^^^^^^^^^^^^^^^^^^
 
-By default, a session after executing request returns response's body
-as :code:`dict` if executing was successful, otherwise it raises exception.
-
-You can pass :code:`pass_error` parameter to :code:`TokenSession`
-for returning original response (including errors).
-
-Error
------
-
-In case of an error, by default, exception is raised.
-You can pass :code:`pass_error` parameter to :code:`TokenSession`
-for returning original error's body as :code:`dict`:
+Server session with authorization with
+`Refresh Token <https://oauth.net/2/grant-types/refresh-token/>`_.
 
 .. code-block:: python
 
-    {
-        "error_code": 100,
-        "error_data": 1,
-        "error_msg": "PARAM : Either session_key or uid must be specified"
-    }
+    from aiookru import RefreshSession, API
 
-All error codes are available here: https://apiok.ru/en/dev/errors.
+    async with RefreshSession(client_id, application_key, application_secret_key, refresh_token) as session:
+        api = API(session)
+        ...

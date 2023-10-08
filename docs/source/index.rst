@@ -9,7 +9,6 @@
    getting_started
    authorization
    session
-   rest_api
 
 Indices and tables
 ==================

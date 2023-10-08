@@ -39,12 +39,11 @@ and create a new application: https://apiok.ru/en/dev/app/create.
 
 To use client OAuth authentication it must be enabled in the app settings.
 
-Save **app_id** (aka **application_id**), **app_key** (aka **application_key**)
-and **app_secret_key** (aka **application_secret_key**)
+Save **client_id**, **application_key** and **application_secret_key**
 for user authorization and executing API requests.
 
 .. code-block:: python
 
-    app_id = 'your_client_id'
-    app_key = 'your_private_key'
-    app_secret_key = 'your_secret_key'
+    client_id = 'client id'
+    application_key = 'private key'
+    application_secret_key = 'secret key'

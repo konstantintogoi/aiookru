@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+httpx = "*"
+
+[dev-packages]
+sphinx = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-localserver = "*"
+
+[requires]
+python_version = "3.7"
