@@ -21,7 +21,7 @@ aiookru
 aiookru is a python `ok.ru API <https://apiok.ru/>`_ wrapper.
 The main features are:
 
-* authorization (`Authorization Code <https://oauth.net/2/grant-types/authorization-code/>`_, `Implicit Flow <https://oauth.net/2/grant-types/implicit/>`_, `Password Grant <https://oauth.net/2/grant-types/password/>`_, `Refresh Token <https://oauth.net/2/grant-types/refresh-token/>`_)
+* authorization (`Authorization Code <https://oauth.net/2/grant-types/authorization-code/>`_, `Password Grant <https://oauth.net/2/grant-types/password/>`_, `Refresh Token <https://oauth.net/2/grant-types/refresh-token/>`_)
 * `REST API <https://apiok.ru/en/dev/methods/rest>`_ methods
 
 

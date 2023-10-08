@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+httpx = "==0.24.1"
+
+[dev-packages]
+pytest = "==7.4.0"
+pytest-asyncio = "==0.21.0"
+pytest-localserver = "==0.7.1"
+
+[requires]
+python_version = "3.7"
