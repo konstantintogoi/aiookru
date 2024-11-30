@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-httpx = "*"
+httpx = "<=1.0.0"
 
 [dev-packages]
 sphinx = "*"

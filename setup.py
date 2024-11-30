@@ -3,7 +3,7 @@ from setuptools import find_packages, setup  # noqa
 
 setup(
     name='aiookru',
-    version='1.0.0rc1',
+    version='1.0.0',
     author='Konstantin Togoi',
     author_email='konstantin.togoi@gmail.com',
     url='https://github.com/konstantintogoi/aiookru',
