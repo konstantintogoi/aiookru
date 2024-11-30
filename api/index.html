@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://konstantintogoi.github.io/aiookru/getting_started/">
+        <link rel="canonical" href="https://konstantintogoi.github.io/aiookru/api/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../requests/">
       
-      
-        <link rel="next" href="../authorization/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +20,7 @@
     
     
       
-        <title>Getting Started - aiookru</title>
+        <title>API - aiookru</title>
       
     
     
@@ -77,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started" class="md-skip">
+        <a href="#rest-api" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              API
             
           </span>
         </div>
@@ -269,29 +267,9 @@
       
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Getting Started
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -300,47 +278,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#account" class="md-nav__link">
-    Account
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#application" class="md-nav__link">
-    Application
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -387,9 +324,29 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -398,6 +355,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executing-requests" class="md-nav__link">
+    Executing requests
+  </a>
+  
+    <nav class="md-nav" aria-label="Executing requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-server-signature-generation-circuit" class="md-nav__link">
+    Server-Server signature generation circuit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-server-signature-generation-circuit" class="md-nav__link">
+    Client-Server signature generation circuit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -429,23 +433,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#executing-requests" class="md-nav__link">
+    Executing requests
+  </a>
+  
+    <nav class="md-nav" aria-label="Executing requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-server-signature-generation-circuit" class="md-nav__link">
+    Server-Server signature generation circuit
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#account" class="md-nav__link">
-    Account
+        
+          <li class="md-nav__item">
+  <a href="#client-server-signature-generation-circuit" class="md-nav__link">
+    Client-Server signature generation circuit
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#application" class="md-nav__link">
-    Application
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -467,29 +477,66 @@
   
 
 
-<h1 id="getting-started">Getting Started</h1>
-<h2 id="installation">Installation</h2>
-<p>If you use pip, just type</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>aiookru
+<h1 id="rest-api">REST API</h1>
+<p>Methods: https://apiok.ru/en/dev/methods/rest.</p>
+<h2 id="executing-requests">Executing requests</h2>
+<p><code>API</code> tries to infer which signature generation circuit to use:</p>
+<ul>
+<li>if <code>application_secret_key</code> is not empty string - server-server signature generation circuit is used</li>
+<li>if <code>session_secret_key</code> is not empty string - client-server signature generation circuit is used</li>
+</ul>
+<h3 id="server-server-signature-generation-circuit">Server-Server signature generation circuit</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">aiookru</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">application_key</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIGKLMNOPK&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">application_secret_key</span> <span class="o">=</span> <span class="s1">&#39;ABC123DEF456GHI789JKL123&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;-s-84W-s3egarWUsbkq-IWTucuedzTKT8VUXIA.s4Xx8IW7&#39;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">async</span> <span class="k">with</span> <span class="n">aiookru</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">application_key</span><span class="p">,</span> <span class="n">application_secret_key</span><span class="o">=</span><span class="n">application_secret_key</span><span class="p">)</span> <span class="k">as</span> <span class="n">okru</span><span class="p">:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">events</span> <span class="o">=</span> <span class="k">await</span> <span class="n">okru</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 </code></pre></div>
-<p>You can install from the source code like</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/konstantintogoi/aiookru.git
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>aiookru
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>$<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
+<p>is equivalent to <strong>GET</strong> request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://api.ok.ru/fb.do
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>?application_key<span class="o">=</span>ABCDEFGHIGKLMNOPK
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">format</span><span class="o">=</span>json
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">method</span><span class="o">=</span>events.get
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">sig</span><span class="o">=</span>232c8eb921951c4dba9b72606f9ddb4c
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">access_token</span><span class="o">=</span>-s-84W-s3egarWUsbkq-IWTucuedzTKT8VUXIA.s4Xx8IW7
 </code></pre></div>
-<h2 id="account">Account</h2>
-<p>To create an app you need to:</p>
+<p>The following steps were taken:</p>
 <ol>
-<li>Sign up in <a href="https://ok.ru">ok.Ru</a> and link an email to your account to receive emails with app data.</li>
-<li>Obtain developer rights at https://ok.ru/devaccess.</li>
+<li><code>b1a2b89707a94624c43afae67d59274c</code> used as secret key, it was calculated as MD5(<code>access_token</code> + <code>application_secret_key</code>)</li>
+<li>sorted request parameters and secret key were concatenated: <code>application_key=ABCDEFGHIGKLMNOPKformat=jsonmethod=events.getb1a2b89707a94624c43afae67d59274c</code></li>
+<li>signature <code>232c8eb921951c4dba9b72606f9ddb4c</code> calculated as MD5 of the previous string</li>
+<li>signature appended to <strong>GET</strong> request parameters</li>
+<li><code>access_token</code> appended to <strong>GET</strong> request parameters</li>
 </ol>
-<p>After obtaining developer rights you will get a link
-to add apps or external sites.
-Open <a href="https://ok.ru/vitrine">Games</a> and select "My downloads" on top.</p>
-<h2 id="application">Application</h2>
-<p>After signing up visit the OK.Ru REST API <a href="https://apiok.ru/en/">documentation page</a>
-and create a new application: https://apiok.ru/en/dev/app/create.</p>
-<p>To use client OAuth authentication it must be enabled in the app settings.</p>
+<h3 id="client-server-signature-generation-circuit">Client-Server signature generation circuit</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">aiookru</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">application_key</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIGKLMNOPK&#39;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;-s-84W-s3egarWUsbkq-IWTucuedzTKT8VUXIA.s4Xx8IW7&#39;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">session_secret_key</span> <span class="o">=</span> <span class="s1">&#39;ae5362b5b588cc7294c2414d71b74d5d&#39;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">async</span> <span class="k">with</span> <span class="n">aiookru</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">application_key</span><span class="p">,</span> <span class="n">session_secret_key</span><span class="o">=</span><span class="n">session_secret_key</span><span class="p">)</span> <span class="k">as</span> <span class="n">okru</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">events</span> <span class="o">=</span> <span class="k">await</span> <span class="n">okru</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<p>is equivalent to <strong>GET</strong> request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>GET<span class="w"> </span>https://api.ok.ru/fb.do
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>?application_key<span class="o">=</span>ABCDEFGHIGKLMNOPK
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">format</span><span class="o">=</span>json
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">method</span><span class="o">=</span>events.get
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">sig</span><span class="o">=</span>03a41413523ea8092507949d6e711963
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">&amp;</span><span class="nv">access_token</span><span class="o">=</span>-s-2GUXOAvQYI7-RfxsZtV1wezsdtVPv92xfuaSQ8.SAIV1O2ywYra2-3ywes5St2yvcuZSr9UUWN2TtbWtWKVTuAy8
+</code></pre></div>
+<p>The following steps were taken:</p>
+<ol>
+<li><code>session_secret_key</code> used as secret key</li>
+<li>sorted request parameters and secret key were concatenated: <code>application_key=ABCDEFGHIGKLMNOPKformat=jsonmethod=events.getae5362b5b588cc7294c2414d71b74d5d</code></li>
+<li>signature <code>03a41413523ea8092507949d6e711963</code> calculated as MD5 of the previous string</li>
+<li>signature appended to <strong>GET</strong> request parameters</li>
+<li><code>access_token</code> appended to <strong>GET</strong> request parameters</li>
+</ol>
 
 
 

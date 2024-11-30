@@ -2,22 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://konstantintogoi.github.io/aiookru/</loc>
-         <lastmod>2024-08-03</lastmod>
+         <lastmod>2024-11-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://konstantintogoi.github.io/aiookru/api/</loc>
+         <lastmod>2024-11-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://konstantintogoi.github.io/aiookru/authorization/</loc>
-         <lastmod>2024-08-03</lastmod>
+         <lastmod>2024-11-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://konstantintogoi.github.io/aiookru/getting_started/</loc>
-         <lastmod>2024-08-03</lastmod>
+         <lastmod>2024-11-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://konstantintogoi.github.io/aiookru/session/</loc>
-         <lastmod>2024-08-03</lastmod>
+         <loc>https://konstantintogoi.github.io/aiookru/requests/</loc>
+         <lastmod>2024-11-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -8,7 +8,8 @@
 
    getting_started
    authorization
-   session
+   requests
+   api
 
 Indices and tables
 ==================
